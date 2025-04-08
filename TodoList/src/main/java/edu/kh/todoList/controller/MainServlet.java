@@ -1,8 +1,10 @@
 package edu.kh.todoList.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
+import edu.kh.todoList.model.dto.Todo;
 import edu.kh.todoList.model.service.TodoListService;
 import edu.kh.todoList.model.service.TodoListServiceImpl;
 import jakarta.servlet.ServletException;
@@ -10,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 // "/main" 요청을 매핑하여 처리하는 서블릿
@@ -28,14 +31,34 @@ public class MainServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		// DB에 갔다오는 일... 해라... 
-		// 요청 -> Controller -> Service -> DAO -> DB
-		// 응답 <- view   <-        <-       <-     <-
-	
-		TodoListService service = new TodoListServiceImpl();
+		try {
+			// DB에 갔다오는 일... 해라... 
+			// 요청 -> Controller -> Service -> DAO -> DB
+			// 응답 <- view   <-        <-       <-     <-
 		
-		// 전체 할 일 목록 + 완료된 Todo 개수
-		Map<String, Object> map = service.todoListFullView();
+			TodoListService service = new TodoListServiceImpl();
+			
+			// 전체 할 일 목록 + 완료된 Todo 개수
+			Map<String, Object> map = service.todoListFullView();
+			
+			// Map 에 저장된 값 풀어내기
+			// Map 에서 Key 로 값을 호출하면 Object로 받아옴
+			List<Todo> todoList = (List<Todo>)map.get("todoList");
+			int completeCount = (int) map.get("completeCount"); 
+			
+			// request scope 에 객체 값 추가하기
+			req.setAttribute("todoList", todoList);
+			req.setAttribute("completeCount", completeCount);
+			
+			// 메인 페이지 응답을 담당하는 jsp에 요청 위임
+			String path = "/WEB-INF/views/main.jsp";
+			req.getRequestDispatcher(path).forward(req, resp);
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
 		
 		

@@ -50,6 +50,62 @@ COMMIT;
 SELECT * FROM TB_TODO;
 
 
+SELECT TODO_NO, TODO_TITLE, TODO_COMPLETE,
+TO_CHAR(REG_DATE, 'YYYY-MM-DD-HH24:MI:SS') REG_DATE
+FROM TB_TODO
+ORDER BY TODO_NO;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
