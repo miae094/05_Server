@@ -98,11 +98,11 @@ public class TodoListServiceImpl implements TodoListService {
 	}
 
 	@Override
-	public int todoUpdate(Todo todo) throws Exception {
+	public int todoUpdate(int todoNo, String title, String detail) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.todoUpdate(conn, todo);
+		int result = dao.todoUpdate(conn, todoNo, title, detail);
 		
 		// 트랜잭션 제어 처리
 		if(result>0) commit(conn);

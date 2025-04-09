@@ -40,18 +40,18 @@ public interface TodoListService {
 	 */
 	int todoComplete(int todoNo) throws Exception;
 
-	/**
+	/** 할 일 삭제 서비스
 	 * @param todoNo
 	 * @return int 성공 시 삭제된 행의 개수 / 실패 시 0 반환
 	 * @throws Exception
 	 */
 	int todoDelete(int todoNo) throws Exception;
 
-	/**
+	/** 할 일 수정 서비스
 	 * @param todo
 	 * @return int 성공 시 업데이트 한 행의 개수 / 실패시 0 반환
 	 * @throws Exception
 	 */
-	int todoUpdate(Todo todo) throws Exception;;
+	int todoUpdate(int todoNo, String title, String detail) throws Exception;;
 	
 }

@@ -34,7 +34,11 @@ completeBtn.addEventListener("click", () => {
 const todoDelete = document.querySelector("#deleteBtn");
 
 todoDelete.addEventListener("click", () => {
-    
+    // 정말 삭제 할 것인지 confirm() 을 이용해서 확인
+    // confirm() 은 확인 클릭 시 true, 취소 클릭 시 false 반환
+    if( !confirm("정말 삭제하시겠습니까?")) return;
+
+    // 확인 클릭 시
     location.href ="/todo/delete?todoNo=" +todoNo;
 });
 
@@ -43,6 +47,9 @@ todoDelete.addEventListener("click", () => {
 const todoUpdate = document.querySelector("#updateBtn");
 
 todoUpdate.addEventListener("click", () => {
-    location.href ="/todo/delete?todoNo=" +todoNo;
+    
+    // 수정할 수 있는 화면을 요청(Get방식)
+    location.href ="/todo/update?todoNo=" +todoNo;
+
     
 });

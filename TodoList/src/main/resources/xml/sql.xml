@@ -49,7 +49,7 @@
 	<entry key="todoUpdate">
 		UPDATE TB_TODO
 		SET TODO_TITLE = ?,
-		TODO_DETAIL =?
+			TODO_DETAIL =?
 		WHERE TODO_NO = ?
 	</entry>
 	
